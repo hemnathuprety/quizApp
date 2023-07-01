@@ -4,7 +4,7 @@ This is a simple Android app that presents the user with ten random quiz questio
 ## Getting Started
 To use this app, follow these steps:
 
-1. Clone the repository to your local machine using Git: <pre> ``` git clone https://github.com/your-username/android-quiz-app.git ``` </pre>
+1. Clone the repository to your local machine using Git: <pre> ``` git clone https://github.com/hemnathuprety/quizApp.git ``` </pre>
 
 2. Open the project in Android Studio.
 
@@ -26,7 +26,7 @@ The score is calculated based on the number of correct answers out of the ten qu
 
 ## Dependencies
 The app uses the following dependencies:
-[](URL)
+
 [Hilt](https://dagger.dev/hilt/): Hilt is a dependency injection library for Android apps. It simplifies managing dependencies and supports both compile-time and runtime injection.
 
 [Room](https://developer.android.com/training/data-storage/room): Room is an SQLite abstraction for Android, making it easier to work with databases. It provides type-safe queries, object mapping, and caching.
@@ -35,5 +35,5 @@ The app uses the following dependencies:
 
 [RxAndroid](https://github.com/ReactiveX/RxAndroid): RxAndroid brings reactive programming to Android. It handles asynchronous operations and complex data flows using RxJava.
 
-Contact
+## Contact
 If you have any questions or need further assistance, please contact the project maintainer at upretyhemnath@gmail.com.

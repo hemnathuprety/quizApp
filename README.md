@@ -10,6 +10,11 @@ To use this app, follow these steps:
 
 3. Build and run the app on an Android device or emulator.
 
+## Download APK
+You can download the APK file of the app using the following link:
+
+[Download APK](https://drive.google.com/file/d/1Ueln9jNekMneNvJFl7jl6iKmhA-3DH6Z/view?usp=sharing)
+
 ## Features
 ### Welcome Screen
 When the app is launched, the user is presented with a welcome screen. The screen displays a welcome message and a "Get Started" button. Clicking the "Get Started" button will start the quiz.

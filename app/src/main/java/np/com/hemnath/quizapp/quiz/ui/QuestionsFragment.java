@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import np.com.hemnath.quizapp.R;
 import np.com.hemnath.quizapp.databinding.FragmentQuestionsBinding;
 import np.com.hemnath.quizapp.quiz.data.domain.model.QuizModel;
 import np.com.hemnath.quizapp.quiz.presentation.QuizViewModel;
@@ -57,18 +56,18 @@ public class QuestionsFragment extends Fragment {
         if (!viewModel.mutableQuizList.isEmpty()) {
             setQuizLists();
 
-            binding.btnNext.setOnClickListener(view1 -> {
+            binding.btnDone.setOnClickListener(view1 -> {
                 nextStep();
             });
 
-            binding.btnBack.setOnClickListener(view1 -> {
-                onPreviousClick();
+            binding.btnDone.setOnClickListener(view1 -> {
+                nextStep();
             });
         }
 
         viewModel.counter.observe(getViewLifecycleOwner(), data -> {
             if (data == 0) {
-                completeSurvey();
+                nextStep();
             } else {
                 float progress = data.floatValue() / 120 * 100;
                 binding.time.setText(String.valueOf(data));
@@ -115,22 +114,12 @@ public class QuestionsFragment extends Fragment {
             currentStep++;
             binding.seekBar.setProgress(binding.seekBar.getProgress() + 1);
             setVisibility();
-            if (currentStep == viewModel.mutableQuizList.size() - 1)
-                binding.btnNext.setText(getString(R.string.done));
-            binding.btnBack.setEnabled(true);
+            viewModel.cancelTimer();
+            viewModel.startTimer();
         } else {
+            viewModel.cancelTimer();
             completeSurvey();
         }
-    }
-
-    private void onPreviousClick() {
-        if (currentStep != 0) {
-            currentStep--;
-            binding.seekBar.setProgress(binding.seekBar.getProgress() - 1);
-            setVisibility();
-            binding.btnNext.setText(getString(R.string.next));
-        }
-        if (currentStep == 0) binding.btnBack.setEnabled(false);
     }
 
     private void completeSurvey() {

@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -92,9 +93,25 @@ public class QuizViewModel extends ViewModel {
             if (data != null && !data.isEmpty()) {
                 ApiToken token = data.get(0).toTokenModel();
                 apiToken = token.getToken();
+                Date date = token.getDate();
                 QuizViewState newState = new QuizViewState();
-                newState.setTokenFetch(true);
+                if (date != null) {
+                    Date now = new Date();
+                    long secondsInMilli = 1000;
+                    long minutesInMilli = secondsInMilli * 60;
+                    long hoursInMilli = minutesInMilli * 60;
+                    long different = now.getTime() - date.getTime();
+                    long elapsedHours = different / hoursInMilli;
+                    if (elapsedHours > 6) {
+                        newState.setNeedTokenReset(true);
+                    } else {
+                        newState.setTokenFetch(true);
+                    }
+                } else {
+                    newState.setTokenFetch(true);
+                }
                 mutableLiveData.setValue(newState);
+
                 Log.d("Token", apiToken);
             } else {
                 getToken(owner);
@@ -110,6 +127,28 @@ public class QuizViewModel extends ViewModel {
                     ApiToken quizData = data.getData();
                     apiToken = quizData.getToken();
                     tokenDataSource.saveToken(quizData);
+                    newState.setTokenFetch(true);
+                    mutableLiveData.setValue(newState);
+                    Log.d("Token", apiToken);
+                    break;
+                case ERROR:
+                    String errorMessage = data.getApiError();
+                    newState.setErrorMessage(errorMessage);
+                    mutableLiveData.setValue(newState);
+                    break;
+                case LOADING:
+                    newState.setLoading(true);
+                    mutableLiveData.setValue(newState);
+                    break;
+            }
+        });
+    }
+
+    public void getResetToken(LifecycleOwner owner) {
+        useCase.getResetToken(apiToken).observe(owner, data -> {
+            QuizViewState newState = new QuizViewState();
+            switch (data.getStatus()) {
+                case SUCCESS:
                     newState.setTokenFetch(true);
                     mutableLiveData.setValue(newState);
                     Log.d("Token", apiToken);
@@ -146,7 +185,6 @@ public class QuizViewModel extends ViewModel {
         newState.setQuizCompleted(true);
         newState.setCorrectAnswerCount(correctAnswerCount);
         mutableLiveData.setValue(newState);
-        cancelTimer();
     }
 
     public void onPlayAgain() {

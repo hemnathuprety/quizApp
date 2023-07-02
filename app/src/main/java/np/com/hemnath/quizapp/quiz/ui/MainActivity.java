@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         viewModel.mutableLiveData.observe(this, data -> {
             if (data.isTokenFetch) {
                 viewModel.getQuizList(this);
+            } else if (data.needTokenReset) {
+                viewModel.getResetToken(this);
             } else if (data.isError) {
                 handleErrorMessage(data.errorMessage);
             } else if (data.isGetStarted) {

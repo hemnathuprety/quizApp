@@ -12,4 +12,7 @@ public interface QuizApiService {
 
     @GET("api_token.php")
     Call<ApiToken> getToken(@Query("command") String command);
+
+    @GET("api_token.php")
+    Call<ApiToken> getResetToken(@Query("command") String command, @Query("token") String token);
 }

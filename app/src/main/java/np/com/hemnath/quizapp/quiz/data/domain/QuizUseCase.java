@@ -46,4 +46,15 @@ public class QuizUseCase {
         }
     }
 
+    public MutableLiveData<Resource<ApiToken>> getResetToken(String token) {
+        if (NetworkUtils.isConnected(context)) {
+            NetworkCall<ApiToken> call = new NetworkCall<>();
+            return call.makeCall(apiService.getResetToken("reset", token));
+        } else {
+            MutableLiveData<Resource<ApiToken>> result = new MutableLiveData<>();
+            result.setValue(Resource.error("Request failed, Please try again"));
+            return result;
+        }
+    }
+
 }

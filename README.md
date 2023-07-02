@@ -14,15 +14,23 @@ To use this app, follow these steps:
 ### Welcome Screen
 When the app is launched, the user is presented with a welcome screen. The screen displays a welcome message and a "Get Started" button. Clicking the "Get Started" button will start the quiz.
 
+![Splash Screen](Screenshot_20230701_224138.png)
+![Welcome Screen](Screenshot_20230701_224221.png)
+
 ### Quiz Questions
 Once the user clicks the "Get Started" button, the quiz begins. The app will present ten random questions, one at a time, to the user. Each question is accompanied by multiple choices for the answer.
 
 The user has two minutes to answer each question. A timer is displayed at the top of the screen, counting down the remaining time. If the user fails to answer within the time limit, the question is considered unanswered.
 
+![Questions Answer 1](Screenshot_20230702_113750.png)
+![Questions Answer 2](Screenshot_20230702_113903.png)
+
 ### Result Screen
 After the user has completed all ten questions or the time runs out, the quiz ends. The result screen is displayed, showing the user's final score.
 
 The score is calculated based on the number of correct answers out of the ten questions. Additionally, the screen displays the total time taken by the user to complete the quiz.
+
+![Result Screen](Screenshot_20230701_224547.png)
 
 ## Dependencies
 The app uses the following dependencies:

@@ -3,6 +3,7 @@ package np.com.hemnath.quizapp.quiz.presentation.model;
 public class QuizViewState {
     public Boolean isLoading;
     public Boolean isTokenFetch;
+    public Boolean needTokenReset;
     public Boolean isError;
     public String errorMessage;
     public Boolean isQuizCompleted;
@@ -13,6 +14,7 @@ public class QuizViewState {
     public QuizViewState() {
         this.isLoading = false;
         this.isTokenFetch = false;
+        this.needTokenReset = false;
         this.isQuizCompleted = false;
         this.isGetStarted = false;
         this.isStartAgain = false;
@@ -83,5 +85,13 @@ public class QuizViewState {
 
     public void setStartAgain(Boolean startAgain) {
         isStartAgain = startAgain;
+    }
+
+    public Boolean getNeedTokenReset() {
+        return needTokenReset;
+    }
+
+    public void setNeedTokenReset(Boolean needTokenReset) {
+        this.needTokenReset = needTokenReset;
     }
 }
